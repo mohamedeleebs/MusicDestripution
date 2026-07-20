@@ -6,6 +6,10 @@ import { TrackService } from '../../core/services/track.service';
 import { TrackDetails } from '../../core/models/TrackDetails';
 import { TrackStatus } from '../../core/models/track';
 
+import { Location } from '@angular/common';
+
+
+
 
 @Component({
   selector: 'app-track-details',
@@ -16,6 +20,7 @@ import { TrackStatus } from '../../core/models/track';
 })
 export class TrackDetailsComponent implements OnInit {
 
+  constructor(private location: Location) {}
   private route = inject(ActivatedRoute);
   private trackService = inject(TrackService);
 
@@ -34,6 +39,9 @@ export class TrackDetailsComponent implements OnInit {
 
   getStatusName(status: number): string {
     return TrackStatus[status];
+  }
+  goBack() {
+    this.location.back();
   }
 
 }
