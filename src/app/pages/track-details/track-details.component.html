@@ -1,0 +1,82 @@
+<div class="details-container">
+
+    @if(track){
+
+    <div class="details-card">
+
+        <h2>{{track.title}}</h2>
+
+        <div class="info-grid">
+
+            <div>
+                <strong>Artist</strong>
+                <span>{{track.artistName}}</span>
+            </div>
+
+            <div>
+                <strong>Genre</strong>
+                <span>{{track.genre}}</span>
+            </div>
+
+            <div>
+                <strong>ISRC</strong>
+                <span>{{track.isrc}}</span>
+            </div>
+
+            <div>
+                <strong>Release Date</strong>
+                <span>{{track.releaseDate | date}}</span>
+            </div>
+
+            <div>
+                <strong>Status</strong>
+                <span>{{getStatusName(track.status)}}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="distribution-section">
+
+        <h3>Distribution Status</h3>
+
+        <table class="table table-hover">
+
+            <thead>
+
+            <tr>
+
+                <th>DSP</th>
+                <th>Status</th>
+                <th>Submitted At</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            @for(distribution of track.distributions; track distribution.dspName){
+
+                <tr>
+
+                    <td>{{distribution.dspName}}</td>
+
+                    <td>{{getStatusName(distribution.status)}}</td>
+
+                    <td>{{distribution.submittedAt | date:'medium'}}</td>
+
+                </tr>
+
+            }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    }
+
+</div>

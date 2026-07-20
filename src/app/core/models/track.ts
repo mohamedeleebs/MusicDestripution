@@ -9,7 +9,7 @@ export interface Track {
 
   artistId: number;
 
-  artist?: Artist;
+  artistName?: Artist;
 
   isrc: string;
 
@@ -17,7 +17,12 @@ export interface Track {
 
   genre: string;
 
-  status: string;
+  status: number;
 
   trackDistributions?: TrackDistribution[];
+}
+export enum TrackStatus {
+  Draft = 0,
+  Submitted = 1,
+  Distributed = 2
 }

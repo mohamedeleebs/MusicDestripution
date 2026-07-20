@@ -1,0 +1,114 @@
+<div class="track-list-container">
+
+    <div class="header">
+
+        <h2>Tracks</h2>
+
+        <select
+            [(ngModel)]="selectedStatus"
+            (change)="loadTracks()">
+
+            <option [ngValue]="null">All</option>
+            <option [ngValue]="0">Draft</option>
+            <option [ngValue]="1">Submitted</option>
+            <option [ngValue]="2">Distributed</option>
+
+        </select>
+
+    </div>
+
+    @if(loading){
+
+    <div class="loading">
+
+        <div class="spinner-border"></div>
+
+    </div>
+
+    }
+
+    @else if(error){
+
+    <div class="alert alert-danger">
+
+        {{error}}
+
+    </div>
+
+    }
+
+    @else if(tracks.length === 0){
+
+    <div class="alert alert-info">
+
+        No tracks found.
+
+    </div>
+
+    }
+
+    @else{
+
+    <table class="table table-hover">
+
+        <thead>
+
+            <tr>
+
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Status</th>
+                <th></th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        @for(track of tracks; track track.id){
+
+            <tr>
+
+                <td>{{track.title}}</td>
+
+                <td>{{track.artistName}}</td>
+
+                <td>{{track.genre}}</td>
+
+                <td>
+
+                    <span
+                        class="status-badge"
+                        [class]="getBadgeClass(track.status)">
+
+                        {{getStatusName(track.status)}}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="view-btn"
+                        (click)="viewDetails(track.id)">
+
+                        View Details
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        }
+
+        </tbody>
+
+    </table>
+
+    }
+
+</div>
